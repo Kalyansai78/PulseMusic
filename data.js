@@ -711,8 +711,8 @@ const songs = [
         "language": "tamil",
         "genre": "Mass",
         "year": 2026,
-        "cover": "images/tamil/Raga_Of_Revenge.jpg",
-        "audio": "musics/tamil/Raga_Of_Revenge.mp3"
+        "cover": "images/tamil/Raga_of_Revenge.jpg",
+        "audio": "musics/tamil/Raga_of_Revenge.mp3"
     },
     {
         "id": 66,
