@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link
+        rel="icon"
+        href="https://cdn-icons-png.flaticon.com/128/831/831337.png"
+        type="image/png"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>PulseMusic</title>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Header -->
+        <header class="header">
+
+            <div class="logo">
+                <span class="logo-icon">♫</span>
+                <span class="logo-text">
+                    <span class="logo-pulse">Pulse</span><span class="logo-music">Music</span>
+                </span>
+            </div>
+
+            <button
+                class="favorites-header-btn"
+                id="favorites-header-btn"
+                type="button"
+                aria-label="Show favorites"
+                title="Show favorites"
+            >
+                <span>♥</span>
+                <span>Favorites</span>
+            </button>
+
+            <button
+                class="create-playlist-header-btn"
+                id="create-playlist-header-btn"
+                type="button"
+                aria-label="Create playlist"
+                title="Create playlist"
+            >
+                <span>＋</span>
+                <span>Create Playlist</span>
+            </button>
+
+            <button
+                class="login-header-btn"
+                id="login-header-btn"
+                type="button"
+            >
+                Login
+            </button>
+
+            <div
+                class="account-menu"
+                style="position: relative;"
+            >
+
+                <button
+                    class="profile-header-btn"
+                    id="profile-header-btn"
+                    type="button"
+                    style="display: none;"
+                >
+                    <span>👤</span>
+                    <span id="profile-header-name">Profile</span>
+                </button>
+
+                <div
+                    class="account-dropdown"
+                    id="account-dropdown"
+                >
+                    <div class="account-dropdown-header">
+
+                        <div class="account-avatar">
+                            👤
+                        </div>
+
+                        <div class="account-user-info">
+                            <strong id="account-dropdown-name">
+                                User
+                            </strong>
+
+                            <span id="account-dropdown-email">
+                                email@example.com
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="account-dropdown-divider"></div>
+                    
+                    <button
+                        type="button"
+                        class="account-dropdown-item"
+                        id="account-playlists-btn"
+                    >
+                        <span>🎵</span>
+                        <span>My Playlists</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="account-dropdown-item"
+                        id="account-recent-btn"
+                    >
+                        <span>🕘</span>
+                        <span>Recently Played</span>
+                    </button>
+
+                    <div class="account-dropdown-divider"></div>
+
+                    <button
+                        type="button"
+                        class="account-dropdown-item account-logout-btn"
+                        id="account-logout-btn"
+                    >
+                        <span>🚪</span>
+                        <span>Logout</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="search-section">
+
+                <div class="search-box">
+
+                    <span class="search-icon" aria-hidden="true"></span>
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Search songs, artists, movies..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        id="clear-search-btn"
+                        type="button"
+                        aria-label="Clear search"
+                    >
+                        ✕
+                    </button>
+
+                </div>
+
+                <button id="search-btn">
+                    Search
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Discovery -->
+            <section class="discovery-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="section-label">
+                            DISCOVER
+                        </p>
+
+                        <h2 id="section-title">
+                            Trending Now
+                        </h2>
+
+                        <p class="section-description">
+                            Explore the latest hits from your favorite languages.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="language-row">
+
+                    <div
+                        class="language-filter"
+                        id="language-filter"
+                    >
+
+                        <button
+                            class="language-btn active"
+                            data-language="all"
+                        >
+                            All
+                        </button>
+
+                        <button
+                            class="language-btn"
+                            data-language="Telugu"
+                        >
+                            Telugu
+                        </button>
+
+                        <button
+                            class="language-btn"
+                            data-language="Tamil"
+                        >
+                            Tamil
+                        </button>
+
+                        <button
+                            class="language-btn"
+                            data-language="Hindi"
+                        >
+                            Hindi
+                        </button>
+
+                        <button
+                            class="language-btn"
+                            data-language="International"
+                        >
+                            International
+                        </button>
+
+                    </div>
+
+                    <div class="song-count-info">
+                        <span id="song-count">70 Songs</span>
+                    </div>
+
+                </div>
+
+                <div class="sort-container">
+                    <label for="sort-select">Sort:</label>
+
+                    <select id="sort-select">
+                        <option value="default">Default</option>
+                        <option value="az">A → Z</option>
+                        <option value="za">Z → A</option>
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                    </select>
+
+                    <span id="page-info">20 per page · 4 pages</span>
+                </div>
+
+                <div
+                    class="search-results"
+                    id="search-results"
+                ></div>
+
+                <div
+                    class="pagination"
+                    id="pagination"
+                ></div>
+
+                <!-- Recently Played -->
+                <section
+                    class="recently-played-section"
+                    id="recently-played-section"
+                >
+
+                <div class="recently-played-header">
+                    <h2>Recently Played</h2>
+
+                    <div class="recently-played-actions">
+                        <button
+                            id="play-recent-btn"
+                            type="button"
+                            aria-label="Play all recently played songs"
+                        >
+                            ▶ Play All
+                        </button>
+
+                        <button
+                            id="clear-recent-btn"
+                            type="button"
+                            aria-label="Clear all recently played songs"
+                        >
+                            Clear All
+                        </button>
+
+                        <span id="recently-played-count">0 songs</span>
+                    </div>
+                </div>
+
+                    <div
+                        class="search-results recently-played-results"
+                        id="recently-played-results"
+                    ></div>
+
+                </section>
+
+                <!-- My Playlists -->
+                <section
+                    class="my-playlists-section"
+                    id="my-playlists-section"
+                >
+
+                    <div class="my-playlists-header">
+
+                        <h2>
+                            My Playlists
+                        </h2>
+
+                        <span id="my-playlists-count">
+                            0 playlists
+                        </span>
+
+                    </div>
+
+                    <div
+                        class="my-playlists-grid"
+                        id="my-playlists-grid"
+                    ></div>
+
+                </section>
+
+                <!-- Playlist View -->
+                <section
+                    class="playlist-view"
+                    id="playlist-view"
+                >
+
+                    <div class="playlist-view-header">
+
+                        <button
+                            class="playlist-back-btn"
+                            id="playlist-back-btn"
+                            type="button"
+                        >
+                            ← Back to My Playlists
+                        </button>
+
+                    </div>
+
+                    <!-- Playlist Header -->
+                    <div class="playlist-view-info">
+
+                        <div
+                            class="playlist-view-cover"
+                            id="playlist-view-cover"
+                        >
+                            <div class="playlist-view-cover-empty">
+                                ♫
+                            </div>
+                        </div>
+
+                        <div class="playlist-view-details">
+
+                            <p class="section-label">
+                                PLAYLIST
+                            </p>
+
+                            <h2 id="playlist-view-title">
+                                Playlist Name
+                            </h2>
+
+                            <p id="playlist-view-count">
+                                0 songs
+                            </p>
+
+                            <div class="playlist-view-actions">
+
+                                <button
+                                    class="playlist-play-all-btn"
+                                    id="playlist-play-all-btn"
+                                    type="button"
+                                >
+
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            d="M8 5v14l11-7z"
+                                        />
+                                    </svg>
+
+                                    <span>Play Playlist</span>
+
+                                </button>
+
+                                <button
+                                    class="playlist-add-songs-btn"
+                                    id="playlist-add-songs-btn"
+                                    type="button"
+                                >
+
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M12 5v14"></path>
+                                        <path d="M5 12h14"></path>
+                                    </svg>
+
+                                    <span>Add Songs</span>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Playlist Songs -->
+                    <div
+                        class="playlist-view-content"
+                        id="playlist-view-content"
+                    >
+
+                        <div class="playlist-empty-state">
+
+                            <div class="playlist-empty-icon">
+                                ♫
+                            </div>
+
+                            <h3>
+                                This playlist is empty
+                            </h3>
+
+                            <p>
+                                Add songs to get started
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+                
+            </section>
+
+            <!-- Player -->
+            <aside class="player-area">
+
+                <div class="music-player">
+
+                    <div class="player-header">
+                        <span>NOW PLAYING</span>
+                        <span class="player-status">●</span>
+                    </div>
+
+                    <audio id="audio-player"></audio>
+
+                    <div
+                        class="disk"
+                        aria-label="Album artwork"
+                    ></div>
+
+                    <div class="track-info">
+
+                        <div class="track-title-row">
+
+                            <h1 class="music-name">
+                                Song 1
+                            </h1>
+
+                            <button
+                                class="track-favorite-btn"
+                                type="button"
+                                aria-label="Add to favorites"
+                                title="Add to favorites"
+                            >
+                                ♡
+                            </button>
+
+                        </div>
+
+                        <p class="artist-name">
+                            Artist 1
+                        </p>
+
+                        <p class="movie-name">
+                            Movie 1
+                        </p>
+
+                    </div>
+
+                    <div class="song-slider">
+
+                        <input
+                            type="range"
+                            value="0"
+                            min="0"
+                            class="seek-bar"
+                            aria-label="Song progress"
+                        >
+
+                        <div class="time-display">
+
+                            <span class="current-time">
+                                00:00
+                            </span>
+
+                            <span class="song-duration">
+                                00:00
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="controls">
+
+                        <button
+                            class="btn backward-btn"
+                            aria-label="Previous song"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M18 4L6 12L18 20V4Z"
+                                    fill="currentColor"
+                                />
+                            </svg>
+                        </button>
+
+                        <button
+                            class="play-btn"
+                            aria-label="Play or pause"
+                        >
+                            <span></span>
+                            <span></span>
+                        </button>
+
+                        <button
+                            class="btn forward-btn"
+                            aria-label="Next song"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M6 4L18 12L6 20V4Z"
+                                    fill="currentColor"
+                                />
+                            </svg>
+                        </button>
+
+                    </div>
+
+                    <button
+                        class="shuffle-btn"
+                        id="shuffle-btn"
+                        aria-label="Shuffle"
+                        title="Shuffle"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            width="20"
+                            height="20"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M3 6h3a4 4 0 0 1 3.5 2l4 8a4 4 0 0 0 3.5 2H21
+                                M18 15l3 3-3 3
+                                M3 18h3a4 4 0 0 0 3.5-2l4-8A4 4 0 0 1 17 6h4
+                                M18 3l3 3-3 3"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                    </button>
+
+                    <button
+                        class="repeat-btn"
+                        id="repeat-btn"
+                        aria-label="Repeat off"
+                        title="Repeat off"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            width="20"
+                            height="20"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M17 2l4 4-4 4
+                                   M3 11V9a3 3 0 0 1 3-3h15
+                                   M7 22l-4-4 4-4
+                                   M21 13v2a3 3 0 0 1-3 3H3"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                    </button>
+
+                    <div class="volume-control">
+
+                        <button
+                            class="volume-btn volume-min-btn"
+                            id="volume-btn"
+                            type="button"
+                            aria-label="Mute"
+                            title="Mute"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M11 5L6 9H3v6h3l5 4V5z"
+                                    fill="currentColor"
+                                />
+                            </svg>
+                        </button>
+
+                        <input
+                            type="range"
+                            class="volume-slider"
+                            id="volume-slider"
+                            min="0"
+                            max="1"
+                            step="0.01"
+                            value="1"
+                            aria-label="Volume"
+                        >
+
+                        <button
+                            class="volume-btn volume-max-btn"
+                            id="volume-max-btn"
+                            type="button"
+                            aria-label="Maximum volume"
+                            title="Maximum volume"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M11 5L6 9H3v6h3l5 4V5z"
+                                    fill="currentColor"
+                                />
+
+                                <path
+                                    d="M15.5 8.5a5 5 0 0 1 0 7"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                />
+
+                                <path
+                                    d="M18.5 5.5a9 9 0 0 1 0 13"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="queue-section">
+
+                    <div class="queue-header">
+                        <span>UP NEXT</span>
+                        <span id="queue-count">0 songs</span>
+                    </div>
+
+                    <div id="queue-list" class="queue-list"></div>
+
+                </div>
+
+            </aside>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+
+            <div class="footer-left">
+                Made with
+                <span class="footer-heart">♥</span>
+                for music lovers.
+            </div>
+
+            <div class="footer-right">
+                <span>Feel the Music, Live the Moment</span>
+
+                <span class="footer-equalizer" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- Create Playlist Modal -->
+    <div
+        class="playlist-modal"
+        id="playlist-modal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="playlist-modal-content"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="playlist-modal-title"
+        >
+
+            <div class="playlist-modal-header">
+
+                <h2 id="playlist-modal-title">
+                    Create Playlist
+                </h2>
+
+                <button
+                    class="playlist-modal-close"
+                    id="playlist-modal-close"
+                    type="button"
+                    aria-label="Close"
+                    title="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div class="playlist-form">
+
+                <label for="playlist-name">
+                    Playlist Name
+                </label>
+
+                <input
+                    type="text"
+                    id="playlist-name"
+                    placeholder="Enter playlist name..."
+                    maxlength="50"
+                    autocomplete="off"
+                >
+
+                <p
+                    class="playlist-error"
+                    id="playlist-error"
+                ></p>
+
+                <button
+                    class="playlist-create-btn"
+                    id="playlist-create-btn"
+                    type="button"
+                >
+                    Create Playlist
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Add Songs to Playlist Modal -->
+    <div
+        class="add-songs-modal"
+        id="add-songs-modal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="add-songs-modal-content"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="add-songs-modal-title"
+        >
+
+            <div class="add-songs-modal-header">
+
+                <div>
+
+                    <p class="section-label">
+                        PLAYLIST
+                    </p>
+
+                    <h2 id="add-songs-modal-title">
+                        Add Songs
+                    </h2>
+
+                </div>
+
+                <button
+                    class="add-songs-modal-close"
+                    id="add-songs-modal-close"
+                    type="button"
+                    aria-label="Close"
+                    title="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div class="add-songs-search">
+
+                <span>
+                    ⌕
+                </span>
+
+                <input
+                    type="text"
+                    id="add-songs-search-input"
+                    placeholder="Search songs, artists, movies..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+            <div
+                class="add-songs-list"
+                id="add-songs-list"
+            ></div>
+
+
+            <div class="add-songs-footer">
+
+                <span id="selected-songs-count">
+                    0 songs selected
+                </span>
+
+                <div class="add-songs-actions">
+
+                    <button
+                        class="add-songs-cancel-btn"
+                        id="add-songs-cancel-btn"
+                        type="button"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        class="add-songs-confirm-btn"
+                        id="add-songs-confirm-btn"
+                        type="button"
+                    >
+                        Add Selected
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Add To Playlist Modal -->
+    <div
+        class="add-to-playlist-modal"
+        id="add-to-playlist-modal"
+        aria-hidden="true"
+    >
+        <div
+            class="add-to-playlist-modal-content"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="add-to-playlist-modal-title"
+        >
+
+            <div class="add-to-playlist-modal-header">
+                <div>
+                    <p class="section-label">PLAYLIST</p>
+                    <h2 id="add-to-playlist-modal-title">
+                        Add to Playlist
+                    </h2>
+                </div>
+
+                <button
+                    class="add-to-playlist-modal-close"
+                    id="add-to-playlist-modal-close"
+                    type="button"
+                    aria-label="Close"
+                    title="Close"
+                >
+                    ×
+                </button>
+            </div>
+
+            <p
+                class="add-to-playlist-song-name"
+                id="add-to-playlist-song-name"
+            >
+                Select a playlist
+            </p>
+
+            <div
+                class="add-to-playlist-list"
+                id="add-to-playlist-list"
+            ></div>
+
+        </div>
+
+    </div>
+
+    <!-- Rename Playlist Modal -->
+    <div
+        id="rename-playlist-modal"
+        class="rename-playlist-modal hidden"
+    >
+        <div class="rename-playlist-content">
+
+            <div class="rename-playlist-header">
+
+                <h2>
+                    Rename Playlist
+                </h2>
+
+                <button
+                    class="playlist-modal-close"
+                    id="rename-playlist-close"
+                    type="button"
+                    aria-label="Close"
+                    title="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <input
+                type="text"
+                id="rename-playlist-input"
+                placeholder="Enter playlist name"
+                maxlength="50"
+            />
+
+            <div class="rename-playlist-actions">
+
+                <button
+                    class="rename-playlist-cancel-btn"
+                    id="cancel-rename-playlist"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="rename-playlist-save-btn"
+                    id="save-rename-playlist"
+                    type="button"
+                >
+                    Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="auth-modal">
+
+        <div class="auth-modal-content">
+
+            <div class="auth-modal-header">
+                <h2 id="auth-modal-title">Login</h2>
+
+                <button
+                    class="auth-modal-close"
+                    id="auth-modal-close"
+                    type="button"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form" id="login-form">
+
+                <label for="login-email">Email</label>
+
+                <div class="input-with-icon">
+                    <svg
+                        class="input-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect
+                            x="3"
+                            y="5"
+                            width="18"
+                            height="14"
+                            rx="2"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        />
+                        <path
+                            d="M3 7L12 13L21 7"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+
+                    <input
+                        type="email"
+                        id="login-email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <label for="login-password">Password</label>
+
+                <div class="input-with-icon password-field">
+                    <svg
+                        class="input-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect
+                            x="5"
+                            y="10"
+                            width="14"
+                            height="10"
+                            rx="2"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        />
+                        <path
+                            d="M8 10V7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7V10"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                        />
+                        <circle
+                            cx="12"
+                            cy="15"
+                            r="1"
+                            fill="currentColor"
+                        />
+                    </svg>
+
+                    <input
+                        type="password"
+                        id="login-password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="login-password"
+                        aria-label="Show password"
+                    >
+                        <svg
+                            class="eye-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M2.5 12C4.5 7.5 8.2 5 12 5C15.8 5 19.5 7.5 21.5 12C19.5 16.5 15.8 19 12 19C8.2 19 4.5 16.5 2.5 12Z"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="3"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                            />
+                        </svg>
+                    </button>
+                </div>
+
+                <button
+                    type="button"
+                    id="forgot-password-btn"
+                    class="forgot-password-btn"
+                >
+                    Forgot password?
+                </button>
+
+                <p class="auth-error" id="login-error"></p>
+
+                <button
+                    class="auth-submit-btn"
+                    type="submit"
+                >
+                    Login
+                </button>
+
+                <p class="auth-switch">
+                    Don't have an account?
+                    <button
+                        type="button"
+                        id="show-signup-btn"
+                    >
+                        Sign Up
+                    </button>
+                </p>
+
+            </form>
+
+            <!-- SignUp Form -->
+            <form class="auth-form" id="signup-form" style="display: none;">
+
+                <label for="signup-name">Full Name</label>
+
+                <div class="input-with-icon">
+                    <svg
+                        class="input-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <circle
+                            cx="12"
+                            cy="8"
+                            r="3.5"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        />
+
+                        <path
+                            d="M5 20C5.8 16.5 8.2 14.5 12 14.5C15.8 14.5 18.2 16.5 19 20"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                        />
+                    </svg>
+
+                    <input
+                        type="text"
+                        id="signup-name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+
+                <label for="signup-email">Email</label>
+
+                <div class="input-with-icon">
+                    <svg
+                        class="input-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect
+                            x="3"
+                            y="5"
+                            width="18"
+                            height="14"
+                            rx="2"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        />
+
+                        <path
+                            d="M3 7L12 13L21 7"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+
+                    <input
+                        type="email"
+                        id="signup-email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+
+                <label for="signup-password">Password</label>
+
+                <div class="input-with-icon password-field">
+                    <svg
+                        class="input-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect
+                            x="5"
+                            y="10"
+                            width="14"
+                            height="10"
+                            rx="2"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        />
+
+                        <path
+                            d="M8 10V7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7V10"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                        />
+
+                        <circle
+                            cx="12"
+                            cy="15"
+                            r="1"
+                            fill="currentColor"
+                        />
+                    </svg>
+
+                    <input
+                        type="password"
+                        id="signup-password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="signup-password"
+                        aria-label="Show password"
+                    >
+                        <svg
+                            class="eye-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M2.5 12C4.5 7.5 8.2 5 12 5C15.8 5 19.5 7.5 21.5 12C19.5 16.5 15.8 19 12 19C8.2 19 4.5 16.5 2.5 12Z"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="3"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                            />
+                        </svg>
+                    </button>
+                </div>
+
+                <p class="auth-error" id="signup-error"></p>
+
+                <button
+                    class="auth-submit-btn"
+                    type="submit"
+                >
+                    Sign Up
+                </button>
+
+                <p class="auth-switch">
+                    Already have an account?
+                    <button
+                        type="button"
+                        id="show-login-btn"
+                    >
+                        Login
+                    </button>
+                </p>
+
+            </form>
+
+            <form class="auth-form" id="reset-password-form" style="display: none;" >
+
+                <label for="reset-password">
+                    New Password
+                </label>
+
+                <div class="input-with-icon password-field">
+                    <svg
+                        class="input-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect
+                            x="5"
+                            y="10"
+                            width="14"
+                            height="10"
+                            rx="2"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        />
+
+                        <path
+                            d="M8 10V7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7V10"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                        />
+
+                        <circle
+                            cx="12"
+                            cy="15"
+                            r="1"
+                            fill="currentColor"
+                        />
+                    </svg>
+
+                    <input
+                        type="password"
+                        id="reset-password"
+                        placeholder="Enter new password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="reset-password"
+                        aria-label="Show password"
+                    >
+                        <svg
+                            class="eye-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M2.5 12C4.5 7.5 8.2 5 12 5C15.8 5 19.5 7.5 21.5 12C19.5 16.5 15.8 19 12 19C8.2 19 4.5 16.5 2.5 12Z"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="3"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                            />
+                        </svg>
+                    </button>
+                </div>
+
+
+                <label for="reset-password-confirm">
+                    Confirm Password
+                </label>
+
+                <div class="input-with-icon password-field">
+                    <svg
+                        class="input-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect
+                            x="5"
+                            y="10"
+                            width="14"
+                            height="10"
+                            rx="2"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        />
+
+                        <path
+                            d="M8 10V7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7V10"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                        />
+
+                        <circle
+                            cx="12"
+                            cy="15"
+                            r="1"
+                            fill="currentColor"
+                        />
+                    </svg>
+
+                    <input
+                        type="password"
+                        id="reset-password-confirm"
+                        placeholder="Confirm new password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="reset-password-confirm"
+                        aria-label="Show password"
+                    >
+                        <svg
+                            class="eye-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M2.5 12C4.5 7.5 8.2 5 12 5C15.8 5 19.5 7.5 21.5 12C19.5 16.5 15.8 19 12 19C8.2 19 4.5 16.5 2.5 12Z"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="3"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                            />
+                        </svg>
+                    </button>
+                </div>
+
+                <p
+                    class="auth-error"
+                    id="reset-password-error"
+                ></p>
+
+                <button
+                    class="auth-submit-btn"
+                    type="submit"
+                >
+                    Update Password
+                </button>
+
+            </form>
+
+            <div
+                class="signup-success"
+                id="signup-success"
+                style="display: none;"
+            >
+                <div class="signup-success-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    Account Created Successfully!
+                </h3>
+
+                <p>
+                    We've sent a verification email to
+                </p>
+
+                <strong id="signup-success-email"></strong>
+
+                <p>
+                    Please check your email and click the
+                    confirmation link to verify your account.
+                </p>
+
+                <button
+                    class="auth-submit-btn"
+                    id="signup-success-login-btn"
+                    type="button"
+                >
+                    Back to Login
+                </button>
+                
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Delete Playlist Modal -->
+    <div
+        id="delete-playlist-modal"
+        class="delete-playlist-modal hidden"
+    >
+
+        <div class="delete-playlist-content">
+
+            <button
+                class="delete-playlist-close-btn"
+                id="close-delete-playlist"
+                type="button"
+                aria-label="Close"
+                title="Close"
+            >
+                ×
+            </button>
+
+            <div class="delete-playlist-icon">
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                >
+                    <path
+                        d="M3 6h18"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                    />
+                    <path
+                        d="M8 6V4h8v2"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                    />
+                    <path
+                        d="M19 6l-1 14H6L5 6"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                    <path
+                        d="M10 11v5M14 11v5"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                    />
+                </svg>
+            </div>
+
+            <h2>
+                Delete Playlist?
+            </h2>
+
+            <p id="delete-playlist-message">
+                Are you sure you want to delete this playlist?
+            </p>
+
+            <div class="delete-playlist-actions">
+
+                <button
+                    class="delete-playlist-cancel-btn"
+                    id="cancel-delete-playlist"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="delete-playlist-confirm-btn"
+                    id="confirm-delete-playlist"
+                    type="button"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="data.js"></script>
+    <script src="supabase.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
