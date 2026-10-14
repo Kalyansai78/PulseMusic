@@ -106,7 +106,6 @@ Powered by Supabase Authentication.
 
 ## 📁 Project Structure
 
-```text
 PulseMusic/
 │
 ├── index.html
@@ -136,3 +135,23 @@ PulseMusic/
     ├── international/
     ├── tamil/
     └── telugu/
+
+## 🚀 Getting Started
+
+1. Clone the repository:
+
+   git clone https://github.com/Kalyansai78/PulseMusic.git
+
+2. Navigate to the project directory:
+
+   cd PulseMusic
+
+3. Open `index.html` in your browser.
+
+Alternatively, open the project in Visual Studio Code and use the Live Server extension.
+
+## 👨‍💻 Author
+
+**Kalyan Sai**
+
+GitHub: [@Kalyansai78](https://github.com/Kalyansai78)
